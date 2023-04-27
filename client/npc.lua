@@ -50,16 +50,32 @@ function startDialogue(npcName)
 
     if currentDialogueStepNum == 1 then
       -- display initial greeting dialogue
-      DrawText3D(npc.position.x, npc.position.y, npc.position.z + 1.0, "Hello there! How can I assist you today?")
+      DrawText3D(npc.position.x, npc.position.y, npc.position.z + 1.0, "Hello there! My name is " .. npc.name .. ". How can I help you today?")
 
       if IsControlJustPressed(0, Keys["E"]) then
         currentDialogueStepNum = 2
       end
     elseif currentDialogueStepNum == 2 then
       -- display response to player input
-      DrawText3D(npc.position.x, npc.position.y, npc.position.z + 1.0, "Ah, I see. Well, let me know if you need any help!")
+      DrawText3D(npc.position.x, npc.position.y, npc.position.z + 1.0, "You're here for the garbage collection job, right? It's a dirty job, but someone's got to do it.")
 
-      dialogueStarted = false
+      if IsControlJustPressed(0, Keys["E"]) then
+        currentDialogueStepNum = 3
+      end
+    elseif currentDialogueStepNum == 3 then
+      -- display more NPC dialogue options
+      DrawText3D(npc.position.x, npc.position.y, npc.position.z + 1.0, "Make sure to collect all the garbage bags you can find. We don't want any litter on our streets. Good luck!")
+
+      if IsControlJustPressed(0, Keys["E"]) then
+        currentDialogueStepNum = 4
+      end
+    elseif currentDialogueStepNum == 4 then
+      -- final NPC response
+      DrawText3D(npc.position.x, npc.position.y, npc.position.z + 1.0, "I'll be around if you need any help or have any questions. Have a good day!")
+
+      if IsControlJustPressed(0, Keys["E"]) then
+        dialogueStarted = false
+      end
     end
   end
 
